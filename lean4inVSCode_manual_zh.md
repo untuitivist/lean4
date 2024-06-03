@@ -60,8 +60,6 @@ Lean 4 VS Code 扩展的 ['设置向导'](command:lean4.setup.showSetupGuide) �
 
 Lean 4 VS Code 扩展的具体设置在后续章节中有详细描述。
 
-
-
 | ![](images/settings_page.png) |
 | :---------------------------: |
 |     *VS Code '设置' 页面*     |
@@ -100,9 +98,9 @@ Lean 4 VS Code 扩展提供的具体命令在后续章节中有详细描述。
 
 | ![](images/command-palette.png) |
 | :-----------------------------: |
-|       *VS Code 命令面板*        |
+|         *VS Code 命令面板*          |
 
-### 按键组合
+### 组合键
 
 VS Code 中的许多命令都绑定到按键组合快捷键上，需要按照顺序按下多个键才能触发命令。VS Code 中的按键组合通常为 `Ctrl+K Ctrl+<some other key>` (`Cmd+K Cmd+<some other key>`) 的形式，可以通过按住 `Ctrl` (`Cmd`)，按下 `K`，释放 `K`，然后按下 `<some other key>` 来触发。
 
@@ -132,8 +130,6 @@ VS Code 中的许多命令都绑定到按键组合快捷键上，需要按照顺
 
 对于当前仍在处理中的文件部分，Lean 无法提供任何需要文件处理信息的交互式功能。例如，在未处理的文件部分中，[错误、警告和信息](#errors-warnings-and-information)不会显示，[InfoView](#infoview) 不会显示当前的目标状态，[悬停提示](#hovers)在文件处理进度未达到相应部分之前也不会显示弹出窗口。
 
-
-
 |                ![](images/file-progress.png)                 |
 | :----------------------------------------------------------: |
 | *文件处理进度。右侧的橙色条显示整个文件的进度，而左侧的橙色条显示编辑器中当前可见源代码行的进度。* |
@@ -154,17 +150,13 @@ VS Code 使用在受影响代码下方显示的波浪线直接在 Lean 文件中
 
 在编辑器右侧的滚动条中，红色/橙色/蓝色区域表示该文件部分包含相应严重性的诊断。
 
-在 VS Code 底部状态栏的左侧部分显示了所有打开文件的诊断数量，使用错误、警告和信息符号进行显示。单击状态栏的此部分将打开 VS Code 的“问题视图”，显示所有当前打开文件的所有诊断，并可通过单击条目或使用箭头键和 `Enter` 快速导航到诊断的跨度。也可以使用 ['查看：显示问题'](command:workbench.actions.view.problems) 命令或 `Ctrl+Shift+M` (`Cmd+Shift+M`) 打开它。
+在 VS Code 底部状态栏的左侧部分显示了所有打开文件的诊断数量，使用错误、警告和信息符号进行显示。单击状态栏的此部分将打开 VS Code 的“问题视图”，显示所有当前打开文件的所有诊断，并可通过单击条目或使用箭头键和 `Enter` 快速导航到诊断的跨度。也可以使用 **'查看：显示问题'** 命令或 `Ctrl+Shift+M` (`Cmd+Shift+M`) 打开它。
 
-使用 ['Error Lens'](command:extension.open?%5B%22usernamehw.errorlens%22%5D) VS Code 扩展，诊断发生的行将被突出显示，并且诊断的消息将在编辑器中内联显示。
-
-
+使用 **'Error Lens'** VS Code 扩展，诊断发生的行将被突出显示，并且诊断的消息将在编辑器中内联显示。
 
 |                 ![](images/diagnostics.png)                  |
 | :----------------------------------------------------------: |
 | *错误、警告和信息诊断及其相应的悬停和 InfoView 信息。滚动条中的红色/橙色/蓝色区域表示该区域包含相应严重性的诊断。VS Code 底部状态栏的左下方显示了所有打开文件的诊断数量，单击此部分将打开“问题视图”。* |
-
-
 
 | ![](images/problems-view.png) |
 | :---------------------------: |
@@ -174,13 +166,11 @@ VS Code 使用在受影响代码下方显示的波浪线直接在 Lean 文件中
 
 当文件 `Module.lean` 导入另一个文件 `Submodule.lean` 时，`Submodule.lean` 中的更改不会自动在 `Module.lean` 中变得可见。这是为了防止意外触发所有依赖于 `Submodule.lean` 的昂贵构建。
 
-相反，需要使用 ['Server: Restart File'](command:lean4.restartFile) 命令手动更新 `Module.lean` 的所有依赖状态。这将触发所有更改依赖的构建。该命令可使用 `Ctrl+Shift+X` (`Cmd+Shift+X`) 调用，在 InfoView 中使用 'Restart File' 按钮，使用[命令菜单](#command-menu)，使用[命令面板](#command-palette)或在 Lean 文件的编辑器中右键单击并选择上下文菜单中的 'Server: Restart File' 条目来调用。
+相反，需要使用 **'Server: Restart File'** 命令手动更新 `Module.lean` 的所有依赖状态。这将触发所有更改依赖的构建。该命令可使用 `Ctrl+Shift+X` (`Cmd+Shift+X`) 调用，在 InfoView 中使用 'Restart File' 按钮，使用[命令菜单](#命令菜单)，使用[命令面板](#命令面板)或在 Lean 文件的编辑器中右键单击并选择上下文菜单中的 'Server: Restart File' 条目来调用。
 
 当编辑并保存文件的依赖关系时，VS Code 将显示[错误或信息级别的诊断](#errors-warnings-and-information)。当首次打开文件时，如果需要重新构建依赖项以使其保持最新状态，则会发出错误并拒绝[处理](#file-processing)文件的其余部分。当文件已经打开时依赖项发生更改，则会发出信息级别的诊断，但将继续处理具有先前依赖项状态的文件。
 
 为了在打开文件时自动触发所有更改的依赖项的重建而不是发出错误，可以启用 'Lean 4: Automatically Build Dependency' 设置。
-
-
 
 | ![](images/restart-file-infoview-button.png) |
 | :------------------------------------------: |
@@ -190,9 +180,9 @@ VS Code 使用在受影响代码下方显示的波浪线直接在 Lean 文件中
 
 Lean 代码使用大量的[Unicode 符号](https://home.unicode.org/)来提高可读性。在 Lean 文件中，可以通过键入反斜杠后跟引用符号来输入这些 Unicode 符号的缩写标识符。一旦缩写标识符完成，如果该缩写标识符不是任何其他缩写标识符的前缀，那么该缩写将自动替换为相应的 Unicode 符号 - 例如，`\forall` 将产生 `∀`。
 
-要在完成之前提前替换缩写，可以按 `Tab` 键触发 ['Lean 4: Input: Convert Current Abbreviation'](command:lean4.input.convert) 命令。这将生成与键入的标识符匹配的最短缩写标识符的 Unicode 符号。当文本光标移动到缩写外时，也会提前替换缩写。
+要在完成之前提前替换缩写，可以按 `Tab` 键触发 **'Lean 4: Input: Convert Current Abbreviation'** 命令。这将生成与键入的标识符匹配的最短缩写标识符的 Unicode 符号。当文本光标移动到缩写外时，也会提前替换缩写。
 
-可以使用 ['Docview: Show All Abbreviations'](command:lean4.docView.showAllAbbreviations) 命令来查看支持的所有缩写标识符和 Unicode 符号的完整列表，该命令可以在命令菜单的 'Documentation…' 子菜单中找到。在 Lean 代码中遇到 Unicode 符号时，[悬停](#hovers)在符号上会提供所有可用的缩写标识符以输入该符号。
+可以使用 **'Docview: Show All Abbreviations'** 命令来查看支持的所有缩写标识符和 Unicode 符号的完整列表，该命令可以在命令菜单的 'Documentation…' 子菜单中找到。在 Lean 代码中遇到 Unicode 符号时，[悬停](#悬停)在符号上会提供所有可用的缩写标识符以输入该符号。
 
 对于一些 Unicode 括号，还有特殊的缩写标识符，它们还会插入匹配的闭合 Unicode 括号，并确保在替换缩写后光标位于 Unicode 括号之间。例如，`\<>` 生成 `⟨⟩`，`\[[]]` 生成 `⟦⟧`，`\f<<>>` 生成 `«»`，`\norm` 生成 `‖‖`。
 
@@ -204,19 +194,13 @@ Unicode 输入机制有几个配置选项：
 - **'Lean 4 > Input: Languages'**。允许添加 [VS Code 语言 ID](https://code.visualstudio.com/docs/languages/identifiers)，以启用该语言的 Unicode 输入机制。
 - **'Lean 4 > Input: Leader'**。允许将缩写的初始字符 (`\`) 替换为其他内容。
 
-
-
 | ![](images/abbreviation.png) |
 | :--------------------------: |
 |    *未完成的 `∀` 的缩写*     |
 
-
-
 |        ![](images/show-all-abbreviations.png)         |
 | :---------------------------------------------------: |
 | *使用 'Docview: Show All Abbreviations' 命令时的输出* |
-
-
 
 |       ![](images/abbreviation_tips.png)       |
 | :-------------------------------------------: |
@@ -226,7 +210,7 @@ Unicode 输入机制有几个配置选项：
 
 InfoView 是 Lean 的主要交互组件。它可用于检查证明目标、期望类型和[诊断](#errors-warnings-and-information)，以及渲染名为['widgets'](#widgets)的任意用户界面以供 Lean 代码使用。
 
-打开 Lean 文档时，InfoView 会自动显示在文本文档旁边。可以始终使用 ['Infoview: Toggle Infoview'](command:lean4.toggleInfoview) 命令或使用 `Ctrl+Shift+Enter` (`Cmd+Shift+Enter`) 来切换它。要停止自动打开 InfoView，可以禁用 'Lean 4 > Infoview: Auto Open' 设置。
+打开 Lean 文档时，InfoView 会自动显示在文本文档旁边。可以始终使用 **'Infoview: Toggle Infoview'** 命令或使用 `Ctrl+Shift+Enter` (`Cmd+Shift+Enter`) 来切换它。要停止自动打开 InfoView，可以禁用 'Lean 4 > Infoview: Auto Open' 设置。
 
 可以使用 'Lean 4 > Infoview: Style' 设置配置 InfoView 的[CSS 样式](https://github.com/leanprover/vscode-lean4/blob/master/lean4-infoview/src/infoview/index.css)。
 
@@ -240,13 +224,11 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 4. **消息**。如果文本光标位于[诊断](#errors-warnings-and-information)的跨度线上，则会显示诊断的交互式变体。禁用 'Lean 4 > Infoview: All Errors On Line' 选项将仅显示位于文本光标右侧的错误。
 5. **全部消息**。始终显示。包含文件中存在的所有[诊断](#errors-warnings-and-information)的交互式变体。
 
-所有部分都可以通过使用鼠标单击它们的标题来折叠，但是期望类型和全部消息部分也可以使用 ['Infoview: Toggle Expected Type'](command:lean4.infoView.toggleExpectedType) 和 ['Infoview: Toggle "All Messages"'](command:lean4.displayList) 命令来折叠和展开。期望类型部分还可以使用 'Lean 4: Infoview > Show Expected Type' 设置来默认折叠。
+所有部分都可以通过使用鼠标单击它们的标题来折叠，但是期望类型和全部消息部分也可以使用 **'Infoview: Toggle Expected Type'** 和 **'Infoview: Toggle "All Messages"'** 命令来折叠和展开。期望类型部分还可以使用 'Lean 4: Infoview > Show Expected Type' 设置来默认折叠。
 
 使用 'Lean 4 > Infoview: Debounce Time' 设置，可以使 InfoView 在文本光标移动时更新速度更快或更慢。
 
 禁用 'Lean 4 > Infoview: Auto Open Shows Goal' 设置将仅在自动打开 InfoView 时显示 '全部消息' 部分。
-
-
 
 |                 ![](images/infoview.png)                 |
 | :------------------------------------------------------: |
@@ -262,7 +244,7 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 在策略状态和期望类型部分的右上方，有三个小图标按钮：
 
-1. **将状态复制到注释**。在当前文本光标位置插入一个包含策略状态或期望类型的注释。也可以使用 ['Infoview: Copy Contents to Comment'](command:lean4.infoView.copyToComment) 命令调用此功能。
+1. **将状态复制到注释**。在当前文本光标位置插入一个包含策略状态或期望类型的注释。也可以使用 **'Infoview: Copy Contents to Comment'** 命令调用此功能。
 2. **反转列表**。将证明目标 / 期望类型显示在假设列表的顶部而不是底部。可以使用 'Lean 4 > Infoview: Reverse Tactic State' 设置来翻转此设置的默认行为。
 3. **筛选器**。显示一个菜单，允许从证明目标状态或期望类型中隐藏类型、实例假设、不可访问的名称和 `let` 绑定的值。
 
@@ -272,8 +254,8 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 在 InfoView 的右上角有三个图标按钮：
 
-1. **固定**。将当前文本光标位置的策略状态、期望类型、消息和小部件部分固定到 InfoView 的顶部，以便在查看其他代码的 InfoView 时可见。在固定的 InfoView 状态中，可以使用额外的 **显示文件位置** 图标按钮导航到固定 InfoView 状态的代码中，并且 '固定' 按钮会替换为 '取消固定' 按钮。也可以使用 ['Infoview: Toggle Pin'](command:lean4.infoView.toggleStickyPosition) 命令调用此功能。
-2. **暂停更新**。冻结策略状态、期望类型、消息和小部件部分。在冻结时，'暂停更新' 按钮会替换为 '继续更新' 按钮。也可以使用 ['Infoview: Toggle Updating'](command:lean4.infoView.toggleUpdating) 命令调用此功能。
+1. **固定**。将当前文本光标位置的策略状态、期望类型、消息和小部件部分固定到 InfoView 的顶部，以便在查看其他代码的 InfoView 时可见。在固定的 InfoView 状态中，可以使用额外的 **显示文件位置** 图标按钮导航到固定 InfoView 状态的代码中，并且 '固定' 按钮会替换为 '取消固定' 按钮。也可以使用 **'Infoview: Toggle Pin'** 命令调用此功能。
+2. **暂停更新**。冻结策略状态、期望类型、消息和小部件部分。在冻结时，'暂停更新' 按钮会替换为 '继续更新' 按钮。也可以使用 **'Infoview: Toggle Updating'** 命令调用此功能。
 3. **更新**。重新获取所有 InfoView 数据。通常不需要使用此按钮。
 
 #### InfoView 悬停提示
@@ -284,8 +266,6 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 可以使用 'Lean 4 > Infoview: Show Tooltip On Hover' 设置禁用 InfoView 悬停提示，但即使禁用此设置，仍然可以点击标识符打开和固定弹出面板。
 
-
-
 |  ![](images/infoview-hover.png)   |
 | :-------------------------------: |
 | *关于 `Nat` 的 InfoView 悬停提示* |
@@ -293,8 +273,6 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 #### InfoView '跳转到定义'
 
 在 InfoView 中右键单击任何非本地标识符并选择 '跳转到定义' 将直接跳转到代码中定义标识符的位置。按住 `Ctrl`（`Cmd`）然后单击标识符也将直接跳转到代码中定义标识符的位置。
-
-
 
 | ![](images/infoview-go-to-definition.png) |
 | :---------------------------------------: |
@@ -308,8 +286,6 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 当使用 Lean 的数学库 [Mathlib](https://github.com/leanprover-community/mathlib4) 并导入 `Mathlib.Tactic.Widget.Conv` 时，可以调用 `conv?` 策略。然后在证明目标中按住 Shift 单击子表达式将会生成 `conv` 策略调用，而不是 `conv?`，该调用专注于特定的子表达式。
 
-
-
 |    ![](images/try-this.png)    |
 | :----------------------------: |
 | *`simp?` 的 '尝试这个' 小部件* |
@@ -322,9 +298,7 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 2. **错误、警告和信息**。当悬停在[下划线的代码](#errors-warnings-and-information)上时，VS Code 将显示与下划线相关联的错误、警告或信息。
 3. **Unicode 符号**。当悬停在 Unicode 符号上时，VS Code 将提供所有可用的[缩写标识符](#unicode-input)以输入该符号。
 
-还可以使用键盘使用 `Ctrl+K Ctrl+I`（`Cmd+K Cmd+I`）[按键组合](#chords)或 ['Show or Focus Hover'](command:editor.action.showHover) 命令在当前文本光标位置触发悬停。将鼠标移开悬停弹出面板将立即折叠它。单击悬停弹出面板将固定它，使其在鼠标移开悬停弹出面板时保持打开状态。
-
-
+还可以使用键盘使用 `Ctrl+K Ctrl+I`（`Cmd+K Cmd+I`）[按键组合](#chords)或 **'Show or Focus Hover'** 命令在当前文本光标位置触发悬停。将鼠标移开悬停弹出面板将立即折叠它。单击悬停弹出面板将固定它，使其在鼠标移开悬停弹出面板时保持打开状态。
 
 |           ![](images/hover.png)            |
 | :----------------------------------------: |
@@ -332,7 +306,7 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 ### 自动完成
 
-自动完成是一种用于查找当前上下文中可用标识符并完成部分标识符的机制。当前上下文由当前导入集合以及可用的本地声明和变量集合确定。可以通过手动使用 `Ctrl+Space`（`Option+Esc`）或 ['Trigger Suggest'](command:editor.action.triggerSuggest) 命令随时触发自动完成。
+自动完成是一种用于查找当前上下文中可用标识符并完成部分标识符的机制。当前上下文由当前导入集合以及可用的本地声明和变量集合确定。可以通过手动使用 `Ctrl+Space`（`Option+Esc`）或 **'Trigger Suggest'** 命令随时触发自动完成。
 
 在 Lean 4 中有三种不同类型的自动完成：
 
@@ -352,8 +326,6 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 默认情况下，当按下 `Enter` 或 `Tab` 时，VS Code 将自动完成所选的标识符。由于 `Enter` 也用于将光标移动到新行，一些用户可能会觉得这种行为很烦人。可以通过将 'Accept Suggestion On Enter' 配置选项设置为 `off` 来禁用此行为。
 
- 
-
 |     | ![](images/completion.png) |
 | :-: | -------------------------- |
 |     | *在 `x : Nat` 上进行点完成的完成菜单*  |
@@ -370,8 +342,6 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 - 输入 `def f : <type1> → <type2> := _` 将提供在 `<type1>` 的值上生成匹配的选项。
 - 输入 `induction x` 或 `cases x` 将提供生成 `x` 的归纳案例的选项。
 
-
-
 |  ![](images/code-action.png)   |
 | :----------------------------: |
 | *`#guard_msgs` 命令的代码操作* |
@@ -381,8 +351,6 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 将文本光标置于标识符上将突出显示当前文件中标识符的所有出现。为了使出现高亮显示起作用，文本光标必须从左边移入标识符，或者直接点击标识符，而不是从右边移入。
 
 当将文本光标置于 `do` 块中的 `return` 语句上时，将突出显示 `return` 所属的 `do`。
-
-
 
 |           ![](images/occurrence-highlighting.png)            |
 | :----------------------------------------------------------: |
@@ -397,9 +365,7 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 3. **变量**。局部变量，例如 `def f (x : Nat) : Nat := x` 中的 `x`，会被突出显示。
 4. **函数声明**。所有函数声明名称，例如 `def f : Nat := g 0 where g n := n` 中的第二个 `g`，会被突出显示。
 
-在编辑器中这些不同类型的语法和语义高亮是否可以区分取决于在 '文件' > '首选项' > '主题' > '颜色主题' 菜单中选择的颜色主题，也可以通过使用 `Ctrl+K Ctrl+T`（`Cmd+K Cmd+T`）[组合键](#chords)或 ['首选项: 颜色主题'](command:workbench.action.selectTheme) 命令打开。
-
-
+在编辑器中这些不同类型的语法和语义高亮是否可以区分取决于在 '文件' > '首选项' > '主题' > '颜色主题' 菜单中选择的颜色主题，也可以通过使用 `Ctrl+K Ctrl+T`（`Cmd+K Cmd+T`）[组合键](#chords)或 **'首选项: 颜色主题'** 命令打开。
 
 | ![](images/semantic-highlighting.png) |
 | :-----------------------------------: |
@@ -407,9 +373,7 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 ### 转到符号
 
-使用 ['在编辑器中转到符号'](command:workbench.action.gotoSymbol) 命令，可以通过键入相应标识符的名称、单击或使用箭头键，在当前 Lean 文档中显示并导航到所有声明、命名空间和部分。键入 `:` 将对所有声明、所有部分和所有命名空间进行分组。
-
-
+使用 **'在编辑器中转到符号'** 命令，可以通过键入相应标识符的名称、单击或使用箭头键，在当前 Lean 文档中显示并导航到所有声明、命名空间和部分。键入 `:` 将对所有声明、所有部分和所有命名空间进行分组。
 
 |   ![](images/go-to-symbol.png)   |
 | :------------------------------: |
@@ -417,9 +381,7 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 ### 文档大纲
 
-文档大纲显示了 Lean 文档的所有命名空间、部分和声明的简要概述。单击条目将跳转到代码中的相应位置。它可以通过 '查看' > '打开视图' > '大纲' 或使用 ['资源管理器: 焦点在大纲视图'](command:outline.focus) 命令打开。
-
-
+文档大纲显示了 Lean 文档的所有命名空间、部分和声明的简要概述。单击条目将跳转到代码中的相应位置。它可以通过 '查看' > '打开视图' > '大纲' 或使用 **'资源管理器: 焦点在大纲视图'** 命令打开。
 
 | ![](images/document-outline.png) |
 | :------------------------------: |
@@ -431,9 +393,7 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 单击面包屑的任何条目都会显示给定级别位置的所有可用备选项列表。例如，单击命名空间中的声明将在同一文件中显示该命名空间中的所有其他声明。选择其中任何条目将直接导航到所选的代码段或文档。
 
-面包屑栏也可以使用 `Ctrl+Shift+;`（`Cmd+Shift+;`）或 ['聚焦面包屑'](command:breadcrumbs.focus) 命令来聚焦，然后使用箭头键和 `Enter` 进行导航。
-
-
+面包屑栏也可以使用 `Ctrl+Shift+;`（`Cmd+Shift+;`）或 **'聚焦面包屑'** 命令来聚焦，然后使用箭头键和 `Enter` 进行导航。
 
 |  ![](images/breadcrumbs.png)   |
 | :----------------------------: |
@@ -441,11 +401,9 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 ### 可折叠的代码块
 
-当将鼠标悬停在包含行号的 Lean 文档编辑器的左列上时，VS Code 会在每个命名空间、部分和声明旁边显示一个折叠符号。单击此折叠符号，使用 `Ctrl+K Ctrl+L`（`Cmd+K Cmd+L`）[组合键](#chords)或 ['切换折叠'](command:editor.toggleFold) 命令将折叠文档的这一部分。再次单击折叠符号或使用与之前相同的命令将展开代码块。
+当将鼠标悬停在包含行号的 Lean 文档编辑器的左列上时，VS Code 会在每个命名空间、部分和声明旁边显示一个折叠符号。单击此折叠符号，使用 `Ctrl+K Ctrl+L`（`Cmd+K Cmd+L`）[组合键](#chords)或 **'切换折叠'** 命令将折叠文档的这一部分。再次单击折叠符号或使用与之前相同的命令将展开代码块。
 
-与[文档大纲](#document-outline)或[面包屑栏](#breadcrumbs)类似，可折叠的代码块可用于获取 Lean 文档的概览并快速导航，例如通过使用 ['折叠全部'](command:editor.foldAll) 命令或 `Ctrl+K Ctrl+0`（`Cmd+K Cmd+0`）[组合键](#chords)来折叠所有代码块，然后使用 ['全部展开'](command:editor.unfoldAll) 命令或 `Ctrl+K Ctrl+J` 组合键来展开所有代码块。
-
-
+与[文档大纲](#document-outline)或[面包屑栏](#breadcrumbs)类似，可折叠的代码块可用于获取 Lean 文档的概览并快速导航，例如通过使用 **'折叠全部'** 命令或 `Ctrl+K Ctrl+0`（`Cmd+K Cmd+0`）[组合键](#组合键)来折叠所有代码块，然后使用 **'全部展开'** 命令或 `Ctrl+K Ctrl+J` 组合键来展开所有代码块。
 
 |    ![](images/code-folding.png)    |
 | :--------------------------------: |
@@ -456,8 +414,6 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 在浏览 Lean 文档时，编辑器顶部将显示与编辑器中显示的第一行代码相对应的周围命名空间、部分和声明的源代码行。单击其中任何一行将立即跳转到源代码中的相应行。
 
 在 VS Code 的资源管理器和终端中也支持固定滚动。
-
-
 
 |          ![](images/sticky-scroll.png)           |
 | :----------------------------------------------: |
@@ -471,11 +427,11 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 ### 转到定义、声明和类型定义
 
-要跳转到代码中标识符的定义位置，可以通过将文本光标置于标识符上并按 `F12`，右键单击标识符并选择 '转到定义'，或按住 `Shift` 并单击标识符来使用 ['转到定义'](command:editor.action.revealDefinition) 命令。
+要跳转到代码中标识符的定义位置，可以通过将文本光标置于标识符上并按 `F12`，右键单击标识符并选择 '转到定义'，或按住 `Shift` 并单击标识符来使用 **'转到定义'** 命令。
 
-通过右键单击标识符并选择 '转到声明' 或将文本光标置于标识符上并按 `Alt+F12` 来使用 ['转到声明'](command:editor.action.revealDeclaration) 命令，目前在很大程度上与 '转到定义' 相同，唯一的重要区别是当 '转到定义' 跳转到标识符的展开器时，'转到声明' 将跳转到解析器。
+通过右键单击标识符并选择 '转到声明' 或将文本光标置于标识符上并按 `Alt+F12` 来使用 **'转到声明'** 命令，目前在很大程度上与 '转到定义' 相同，唯一的重要区别是当 '转到定义' 跳转到标识符的展开器时，'转到声明' 将跳转到解析器。
 
-使用通过右键单击标识符并选择 '转到类型定义' 或通过将文本光标置于标识符上并按 `F12` 来使用 ['转到类型定义'](command:editor.action.goToTypeDefinition) 命令，将跳转到光标位置的标识符的类型。
+使用通过右键单击标识符并选择 '转到类型定义' 或通过将文本光标置于标识符上并按 `F12` 来使用 **'转到类型定义'** 命令，将跳转到光标位置的标识符的类型。
 
 
 
@@ -487,7 +443,7 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 通过右键单击标识符并选择 '显示调用层次结构' 或将文本光标置于标识符上并按 `Alt+Shift+H`，将显示整个 Lean 项目中使用此标识符的所有声明列表。单击使用情况旁边的任何尖号之一还将递归显示该使用情况的所有使用情况。这使得可以快速了解标识符的所有使用情况所在的上下文。调用层次结构也可以使用箭头键和 `Enter` 进行导航。
 
-单击调用层次结构视图右上角的电话图标按钮，或使用 ['显示出站调用'](command:references-view.showOutgoingCalls) 命令，将切换调用层次结构以显示在给定标识符的声明中使用的所有标识符。这对于快速获取声明依赖的不同标识符的概述很有用。
+单击调用层次结构视图右上角的电话图标按钮，或使用 **'显示出站调用'** 命令，将切换调用层次结构以显示在给定标识符的声明中使用的所有标识符。这对于快速获取声明依赖的不同标识符的概述很有用。
 
 当浏览长列表的使用情况并检查每个使用情况是否对每个单独的使用情况都满足某个属性时，有时删除已经检查过的个别条目可以帮助。这可以通过将鼠标悬停在调用层次结构条目上并单击调用层次结构右侧的 X 图标按钮来完成。
 
@@ -515,7 +471,7 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 ### 工作区符号搜索
 
-使用 ['转到工作区中的符号…'](command:workbench.action.showAllSymbols) 命令，可以触发搜索面板，方法是使用 `Ctrl+T`（`Cmd+T`）或通过 `Ctrl+P`（`Cmd+P`）然后输入 `#` 符号。在此搜索面板中输入标识符将在当前 Lean 项目中进行模糊搜索。单击标识符或使用箭头键和 `Enter` 选择标识符将跳转到代码中声明标识符的位置。这通常比使用纯文本搜索更有效，因为它不会产生任何误报。
+使用 **'转到工作区中的符号…'** 命令，可以触发搜索面板，方法是使用 `Ctrl+T`（`Cmd+T`）或通过 `Ctrl+P`（`Cmd+P`）然后输入 `#` 符号。在此搜索面板中输入标识符将在当前 Lean 项目中进行模糊搜索。单击标识符或使用箭头键和 `Enter` 选择标识符将跳转到代码中声明标识符的位置。这通常比使用纯文本搜索更有效，因为它不会产生任何误报。
 
 
 
@@ -525,15 +481,15 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 ### 项目文本搜索
 
-使用 ['搜索：在文件中查找'](command:workbench.action.findInFiles) 命令，可以触发 `Ctrl+Shift+F`，用于在 Lean 项目中搜索文本部分。键入文本部分将显示项目中的所有匹配项，按目录和文件分组。单击任何条目将跳转到代码中的相应位置。要使用此功能，必须首先使用 ['文件：打开文件夹…'](command:workbench.action.files.openFolder) 命令将 Lean 项目文件夹在 VS Code 中打开，该命令可通过 '文件' > '打开文件夹…' 或使用 `Ctrl+K Ctrl+O`（`Cmd+K Cmd+O`）[弦](#chords)来访问。
+使用 **'搜索：在文件中查找'** 命令，可以触发 `Ctrl+Shift+F`，用于在 Lean 项目中搜索文本部分。键入文本部分将显示项目中的所有匹配项，按目录和文件分组。单击任何条目将跳转到代码中的相应位置。要使用此功能，必须首先使用 **'文件：打开文件夹…'** 命令将 Lean 项目文件夹在 VS Code 中打开，该命令可通过 '文件' > '打开文件夹…' 或使用 `Ctrl+K Ctrl+O`（`Cmd+K Cmd+O`）[弦](#chords)来访问。
 
 在搜索输入聚焦时，可以使用 `向上` 和 `向下` 箭头键访问过去的搜索结果。
 
 有几种方法可以通过搜索字段右侧的图标按钮来细化搜索：
 
-- **匹配大小写**。将搜索结果限制为区分大小写的匹配项。例如，`word` 将不再匹配 `Word`。也可以使用 ['搜索编辑器：切换匹配大小写'](command:toggleSearchEditorCaseSensitive) 命令或 `Alt+C` 切换。
-- **全词匹配**。将搜索结果限制为全词匹配项。例如，`word` 将不再匹配 `largerword`。也可以使用 ['搜索编辑器：切换全词匹配'](command:toggleSearchEditorWholeWord) 命令或 `Alt+W` 切换。
-- **使用正则表达式**。使用[正则表达式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions)搜索文件，而不是搜索文本部分。也可以使用 ['搜索编辑器：切换使用正则表达式'](command:toggleSearchEditorRegex) 命令或 `Alt+R` 切换。
+- **匹配大小写**。将搜索结果限制为区分大小写的匹配项。例如，`word` 将不再匹配 `Word`。也可以使用 **'搜索编辑器：切换匹配大小写'** 命令或 `Alt+C` 切换。
+- **全词匹配**。将搜索结果限制为全词匹配项。例如，`word` 将不再匹配 `largerword`。也可以使用 **'搜索编辑器：切换全词匹配'** 命令或 `Alt+W` 切换。
+- **使用正则表达式**。使用[正则表达式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions)搜索文件，而不是搜索文本部分。也可以使用 **'搜索编辑器：切换使用正则表达式'** 命令或 `Alt+R` 切换。
 
 在搜索栏下方右侧，有一个带有三个点的图标按钮。单击它将打开另外两个文本输入框，允许将搜索限制为一组文件或从搜索中排除一组文件。单击 '要包含的文件' 文本输入框中的书图标按钮还将额外限制搜索仅针对打开的文件。
 
@@ -543,12 +499,14 @@ InfoView 分为几个部分，其中大多数只在文本光标位于特定位�
 
 在查看了长列表的搜索结果后，有时删除已经检查过的搜索结果的单个条目可能会有所帮助。这可以通过将鼠标悬停在搜索结果上并单击搜索视图右侧的 'X' 图标按钮来完成。
 
-通过单击搜索视图右上角包含文件图标的第三个图标按钮，或使用 ['搜索编辑器：新搜索编辑器'](command:search.action.openNewEditor) 命令，可以打开另一种搜索视图，其中搜索结果直接显示在文本编辑器中。单击文本编辑器将导航到代码中的相应位置。
+通过单击搜索视图右上角包含文件图标的第三个图标按钮，或使用 **'搜索编辑器：新搜索编辑器'** 命令，可以打开另一种搜索视图，其中搜索结果直接显示在文本编辑器中。单击文本编辑器将导航到代码中的相应位置。
 
 
 
-|               ![](images/project-search.png)                |
-| *启用分层树显示选项的搜索视图* |
+| ![](images/project-search.png) |
+| :----------------------------- |
+| *启用分层树显示选项的搜索视图*               |
+|                                |
 
 ### 转到文件
 
@@ -568,8 +526,6 @@ VS Code具有内置的文件资源管理器，可以使用 ['View: Show Explorer
 
 通过按住 `Ctrl`（`Cmd`）并单击两个文件，右键单击其中任何文件时会出现一个 'Compare Selected' 条目。这将打开一个差异视图，显示两个文件之间的更改。
 
-
-
 | ![](images/file-explorer.png) |
 | :---------------------------: |
 |   *VS Code 文件资源管理器*    |
@@ -582,21 +538,21 @@ VS Code具有内置的文件资源管理器，可以使用 ['View: Show Explorer
 
 ### 创建项目
 
-有两个项目创建命令可以通过 [命令面板](#command-palette) 或通过导航到 [命令菜单](#command-menu) 中的 'New Project…' 子菜单来访问：
+有两个项目创建命令可以通过 [命令面板](#命令面板) 或通过导航到 [命令菜单](#命令菜单) 中的 'New Project…' 子菜单来访问：
 
-1. **['Project: Create Standalone Project…'](command:lean4.project.createStandaloneProject)**。此命令将在文件夹创建对话框中指定的名称下创建一个新的 Lean 4 项目，不带任何额外的依赖项。它将使用项目的 Lean 版本的 `leanprover/lean4:stable` 工具链，初始化一个 [Git](https://git-scm.com/) 存储库，并使用所有新项目中的所有文件创建一个初始提交。
-1. **['Project: Create Project Using Mathlib…'](command:lean4.project.createMathlibProject)**。此命令将在文件夹创建对话框中指定的名称下创建一个新的 Lean 4 项目，该项目依赖于 Lean 的数学库 [Mathlib](https://github.com/leanprover-community/mathlib4)。它将使用 Mathlib 的 Lean 工具链作为项目的 Lean 版本，下载并安装当前的 Mathlib 构建工件缓存，初始化一个 [Git](https://git-scm.com/) 存储库，并使用所有新项目中的所有文件创建一个初始提交。
+1. **'Project: Create Standalone Project…'**。此命令将在文件夹创建对话框中指定的名称下创建一个新的 Lean 4 项目，不带任何额外的依赖项。它将使用项目的 Lean 版本的 `leanprover/lean4:stable` 工具链，初始化一个 [Git](https://git-scm.com/) 存储库，并使用所有新项目中的所有文件创建一个初始提交。
+1. **'Project: Create Project Using Mathlib…'**。此命令将在文件夹创建对话框中指定的名称下创建一个新的 Lean 4 项目，该项目依赖于 Lean 的数学库 [Mathlib](https://github.com/leanprover-community/mathlib4)。它将使用 Mathlib 的 Lean 工具链作为项目的 Lean 版本，下载并安装当前的 Mathlib 构建工件缓存，初始化一个 [Git](https://git-scm.com/) 存储库，并使用所有新项目中的所有文件创建一个初始提交。
 
 ### 打开项目
 
-有两个打开现有 Lean 项目的命令，可以通过 [命令面板](#command-palette) 或通过导航到 [命令菜单](#command-menu) 中的 'Open Project…' 子菜单来访问：
+有两个打开现有 Lean 项目的命令，可以通过 [命令面板](#命令面板) 或通过导航到 [命令菜单](#命令菜单) 中的 'Open Project…' 子菜单来访问：
 
 1. **['Project: Open Local Project…'](command:lean4.project.open)**。此命令将打开由文件夹选择对话框中指定的文件夹中的 Lean 4 项目。此命令与 VS Code 自带的 'Open Folder…' 命令基本相同，但还会立即确保打开的文件夹实际上是一个 Lean 4 项目。
 1. **['Project: Download Project…'](command:lean4.project.clone)**。此命令将 Lean 4 项目从给定的 URL 下载到文件夹创建对话框中指定的文件夹中。如果下载的项目是 Lean 的数学库 [Mathlib](https://github.com/leanprover-community/mathlib4) 或依赖于它，它还将下载并安装当前的 Mathlib 构建工件缓存。
 
 ### 项目操作
 
-Lean 4 VS Code 扩展支持以下可以在现有 Lean 项目中运行的命令，并且可以通过 [命令面板](#command-palette) 或通过导航到 [命令菜单](#command-menu) 中的 'Project Actions…' 子菜单来访问：
+Lean 4 VS Code 扩展支持以下可以在现有 Lean 项目中运行的命令，并且可以通过 [命令面板](#命令面板) 或通过导航到 [命令菜单](#命令菜单) 中的 'Project Actions…' 子菜单来访问：
 
 1. **['Project: Build Project'](command:lean4.project.build)**。构建完整的 Lean 项目。如果项目是 Lean 的数学库 [Mathlib](https://github.com/leanprover-community/mathlib4) 或依赖于它，它还将在尝试构建项目之前下载并安装当前的 Mathlib 构建工件缓存。
 2. **['Project: Clean Project'](command:lean4.project.clean)**。删除 Lean 项目的所有构建产物。如果项目是 Lean 的数学库 [Mathlib](https://github.com/leanprover-community/mathlib4) 或依赖于它，它将在清理项目后提供下载并安装当前的 Mathlib 构建工件缓存。
@@ -628,7 +584,7 @@ Lean 4 VS Code 扩展支持以下可以在现有 Lean 项目中运行的命令�
 
    ### 安装和更新 Elan
 
-   Lean 的版本管理器 [Elan](https://github.com/leanprover/elan/blob/master/README.md) 可以通过使用 ['Setup: Install Elan'](command:lean4.setup.installElan) 命令来安装或更新。该命令可以在 [命令面板](#command-palette) 中找到，也可以通过导航到 [命令菜单](#command-menu) 中的 'Version Management…' 子菜单找到。
+   Lean 的版本管理器 [Elan](https://github.com/leanprover/elan/blob/master/README.md) 可以通过使用 **'Setup: Install Elan'** 命令来安装或更新。该命令可以在 [命令面板](#命令面板) 中找到，也可以通过导航到 [命令菜单](#命令菜单) 中的 'Version Management…' 子菜单找到。
 
    ---
 
@@ -673,7 +629,7 @@ Lean 4 VS Code 扩展在启动 Lean 之前会检查用户的 Lean 设置是否�
 
 输出使用 Markdown 格式化，复制到支持 Markdown 的工具，例如 [Lean Zulip](https://leanprover.zulipchat.com)，将产生一个良好渲染的输出。
 
-<br/>
+
 
 | ![](images/setup-information.png) |
 | :-------------------------------: |
@@ -681,9 +637,8 @@ Lean 4 VS Code 扩展在启动 Lean 之前会检查用户的 Lean 设置是否�
 
 ### 输出视图
 
-当 Lean 在与文件交互时产生错误，或者执行外部命令时产生错误时，这些错误以及所有外部命令输出都会显示在 'Lean: Editor' 输出视图中，这有助于诊断问题。可以使用 ['Troubleshooting: Show Output'](command:lean4.troubleshooting.showOutput) 命令从 [命令面板](#command-palette) 或 [命令菜单](#command-menu) 打开该视图。
+当 Lean 在与文件交互时产生错误，或者执行外部命令时产生错误时，这些错误以及所有外部命令输出都会显示在 'Lean: Editor' 输出视图中，这有助于诊断问题。可以使用 ['Troubleshooting: Show Output'](command:lean4.troubleshooting.showOutput) 命令从 [命令面板](#命令面板) 或 [命令菜单](#命令菜单) 打开该视图。
 
-<br/>
 
 | ![](images/output-view.png) |
 | :-------------------------: |
@@ -691,4 +646,4 @@ Lean 4 VS Code 扩展在启动 Lean 之前会检查用户的 Lean 设置是否�
 
 ### 重启 Lean
 
-当与 Lean 交互时出现问题，并且似乎与 Lean 的交互严重受损，例如 Lean 中发生了错误，可以始终使用 ['Server: Restart Server'](command:lean4.restartServer) 命令从 [命令面板](#command-palette) 或 [命令菜单](#command-menu) 来完全重新启动它。如果 Lean 4 VS Code 扩展出现了错误，则重新启动 VS Code 可能有所帮助。
+当与 Lean 交互时出现问题，并且似乎与 Lean 的交互严重受损，例如 Lean 中发生了错误，可以始终使用 ['Server: Restart Server'](command:lean4.restartServer) 命令从 [命令面板](#命令面板) 或 [命令菜单](#命令菜单) 来完全重新启动它。如果 Lean 4 VS Code 扩展出现了错误，则重新启动 VS Code 可能有所帮助。
